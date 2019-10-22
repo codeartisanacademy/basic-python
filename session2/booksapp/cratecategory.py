@@ -11,7 +11,7 @@ def create_connection(db_file):
         return None
 
 
-def insert_author(c, sql):
+def insert_category(c, sql):
     if c:
         cursor = c.cursor()
         try:
@@ -28,14 +28,13 @@ def main():
     connection = create_connection('booksappdb.db')
 
     insert_sql = '''
-        INSERT INTO authors (name, gender) VALUES ('{0}', '{1}')
+        INSERT INTO categories (name) VALUES ('{0}')
     '''
 
     if connection:
-        name = input('Enter the author name: ')
-        gender = input('Enter the gender (m/f): ')
-        new_author = insert_author(connection, insert_sql.format(name, gender))
-        print('id %s has been created' % new_author)
+        name = input('Enter the category name: ')
+        new_category = insert_category(connection, insert_sql.format(name))
+        print('id %s has been created' % new_category)
     else:
         print('no connection')
 
